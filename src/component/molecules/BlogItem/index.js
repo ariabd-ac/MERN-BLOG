@@ -1,21 +1,28 @@
 import React from "react";
 import "./blogitem.scss";
 import { RegisterBg } from "../../../assets";
+import { Button, Gap } from "../../atoms";
+import { useHistory } from "react-router-dom";
 
-const BlogItem = () => {
+const BlogItem = (props) => {
+  const history = useHistory();
+  const { image, title, name, date, body } = props;
+
   return (
     <div className="blog-item">
-      <img className="image-thumb" src={RegisterBg} alt="post" />
+      <img className="image-thumb" src={image} alt="post" />
       <div className="content-detail">
-        <p className="title">Title Blog</p>
-        <p className="author">Author - Date Post</p>
-
-        <p className="body">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum iure
-          placeat doloribus perferendis provident, sapiente eveniet
-          necessitatibus possimus quibusdam reprehenderit ipsa totam amet
-          voluptates laudantium ad mollitia, voluptatem non aut.
+        <p className="title">{title}</p>
+        <p className="author">
+          {name} - {date}
         </p>
+
+        <p className="body">{body}</p>
+        <Gap height={20} />
+        <Button
+          title="View Detail"
+          onClick={() => history.push("/detail-blog")}
+        />
       </div>
     </div>
   );
